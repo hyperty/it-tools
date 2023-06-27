@@ -8,35 +8,13 @@ import { config } from '@/config';
 
 const toolStore = useToolStore();
 
-useHead({ title: 'IT Tools - Handy online tools for developers' });
+useHead({ title: 'LNVPE Warehouse' });
 const { t } = useI18n();
 </script>
 
 <template>
   <div class="home-page">
     <div class="grid-wrapper">
-      <n-grid v-if="config.showBanner" x-gap="12" y-gap="12" cols="1 400:2 800:3 1200:4 2000:8">
-        <n-gi>
-          <ColoredCard title="You like it-tools?" :icon="Heart">
-            Give us a star on
-            <a
-              href="https://github.com/CorentinTh/it-tools"
-              rel="noopener"
-              target="_blank"
-              aria-label="IT-Tools' GitHub repository"
-            >GitHub</a>
-            or follow us on
-            <a
-              href="https://twitter.com/ittoolsdottech"
-              rel="noopener"
-              target="_blank"
-              aria-label="IT-Tools' Twitter account"
-            >Twitter</a>! Thank you
-            <n-icon :component="Heart" />
-          </ColoredCard>
-        </n-gi>
-      </n-grid>
-
       <transition name="height">
         <div v-if="toolStore.favoriteTools.length > 0">
           <n-h3>Your favorite tools</n-h3>

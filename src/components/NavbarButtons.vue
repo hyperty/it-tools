@@ -7,7 +7,7 @@ const { isDarkTheme } = toRefs(styleStore);
 </script>
 
 <template>
-  <n-tooltip trigger="hover">
+  <!-- <n-tooltip trigger="hover">
     <template #trigger>
       <c-button
         circle
@@ -37,16 +37,17 @@ const { isDarkTheme } = toRefs(styleStore);
       </c-button>
     </template>
     IT Tools' Twitter account
-  </n-tooltip>
+  </n-tooltip> -->
 
-  <n-tooltip trigger="hover">
+  <!-- <n-tooltip trigger="hover">
     <template #trigger>
       <c-button circle variant="text" to="/about" aria-label="About">
         <n-icon size="25" :component="InfoCircle" />
       </c-button>
     </template>
     About
-  </n-tooltip>
+  </n-tooltip> -->
+
   <n-tooltip trigger="hover">
     <template #trigger>
       <c-button circle variant="text" aria-label="Toggle dark/light mode" @click="() => styleStore.toggleDark()">

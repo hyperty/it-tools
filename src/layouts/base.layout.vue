@@ -37,11 +37,11 @@ const tools = computed<ToolCategory[]>(() => [
         <HeroGradient class="gradient" />
         <div class="text-wrapper">
           <div class="title">
-            IT - TOOLS
+            Warehouse
           </div>
           <div class="divider" />
           <div class="subtitle">
-            Handy tools for developers
+            Platform Enablement Team
           </div>
         </div>
       </RouterLink>
@@ -55,29 +55,10 @@ const tools = computed<ToolCategory[]>(() => [
 
         <div class="footer">
           <div>
-            IT-Tools
-
-            <c-link target="_blank" rel="noopener" :href="`https://github.com/CorentinTh/it-tools/tree/v${version}`">
-              v{{ version }}
-            </c-link>
-
-            <template v-if="commitSha && commitSha.length > 0">
-              -
-              <c-link
-                target="_blank"
-                rel="noopener"
-                type="primary"
-                :href="`https://github.com/CorentinTh/it-tools/tree/${commitSha}`"
-              >
-                {{ commitSha }}
-              </c-link>
-            </template>
+            © {{ new Date().getFullYear() }}
           </div>
           <div>
-            © {{ new Date().getFullYear() }}
-            <c-link target="_blank" rel="noopener" href="https://github.com/CorentinTh">
-              Corentin Thomasset
-            </c-link>
+            LNV Platform Enablement
           </div>
         </div>
       </div>
@@ -107,24 +88,6 @@ const tools = computed<ToolCategory[]>(() => [
         <command-palette mx-2 />
 
         <NavbarButtons v-if="!styleStore.isSmallScreen" />
-
-        <n-tooltip trigger="hover">
-          <template #trigger>
-            <c-button
-              round
-              href="https://www.buymeacoffee.com/cthmsst"
-              rel="noopener"
-              target="_blank"
-              class="support-button"
-              :bordered="false"
-              @click="() => tracker.trackEvent({ eventName: 'Support button clicked' })"
-            >
-              Buy me a coffee
-              <NIcon v-if="!styleStore.isSmallScreen" :component="Heart" ml-2 />
-            </c-button>
-          </template>
-          ❤ Support IT Tools development !
-        </n-tooltip>
       </div>
       <slot />
     </template>
