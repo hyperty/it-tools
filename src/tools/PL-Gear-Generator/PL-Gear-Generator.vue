@@ -24,7 +24,7 @@ export default {
         { title: 'Profile 7', PL1: 15, PL2: 20 },
         { title: 'Profile 8', PL1: 0, PL2: 0 },
       ],
-      inputValue: 'Copy and paste the content of Registery Editor here...',
+      inputValue: '',
       numberOfGears: 9,
       checkedValue: 'CPU Profile',
     };
@@ -39,7 +39,7 @@ export default {
         if (profileTitle === 'CPUProfile') {
           adjustedProfileIndex = parseInt(profileIndex, 10);
         } else if (profileTitle === 'AIProfile') {
-          adjustedProfileIndex = parseInt(profileIndex, 10) + 10;
+          adjustedProfileIndex = parseInt(profileIndex, 10);
         }
         const dcPL2 = parseInt(hexValue.substr(2, 2), 16);
         const dcPL1 = parseInt(hexValue.substr(4, 2), 16);
@@ -75,14 +75,14 @@ export default {
   
         if (acPL1 !== 0 && acPL2 !== 0 && dcPL1 !== 0 && dcPL2 !== 0) {
           const hexValue = [
-            acPL1.toString(16).padStart(2, '0'), // AC PL1的十六进制值（2位）
-            acPL2.toString(16).padStart(2, '0'), // AC PL2的十六进制值（2位）
-            dcPL1.toString(16).padStart(2, '0'), // DC PL1的十六进制值（2位）
             dcPL2.toString(16).padStart(2, '0'), // DC PL2的十六进制值（2位）
+            dcPL1.toString(16).padStart(2, '0'), // DC PL1的十六进制值（2位）
+            acPL2.toString(16).padStart(2, '0'), // AC PL2的十六进制值（2位）
+            acPL1.toString(16).padStart(2, '0'), // AC PL1的十六进制值（2位）
           ].join('');
     
           const profileText = checkedValue === 'CPU Profile' ? `CPUProfile${i}` : `AIProfile1${i}`;
-          const text = `Write_REG_PowerSlider_DWORD("Policy_${profileText}", 0x1${hexValue});`;
+          const text = `Write_REG_PowerSlider_DWORD("Policy_${profileText}", 0x${hexValue});`;
           textArr.push(text);
         }
       }
@@ -99,9 +99,9 @@ export default {
 </script>
 
 <template>
-  <n-card title="AC">
+    <n-card title="DC">
     <n-grid :cols="5" y-gap="5">
-      <template v-for="profile in acProfiles" :key="profile.title">
+      <template v-for="profile in dcProfiles" :key="profile.title">
         <n-gi class="profile-title-grid">
           <div class="profile-text">{{ profile.title }}</div>
         </n-gi>
@@ -122,9 +122,9 @@ export default {
       </template>
     </n-grid>
   </n-card>
-  <n-card title="DC">
+  <n-card title="AC">
     <n-grid :cols="5" y-gap="5">
-      <template v-for="profile in dcProfiles" :key="profile.title">
+      <template v-for="profile in acProfiles" :key="profile.title">
         <n-gi class="profile-title-grid">
           <div class="profile-text">{{ profile.title }}</div>
         </n-gi>
@@ -188,7 +188,7 @@ export default {
       <n-input
         v-model:value="inputValue"
         type="textarea"
-        placeholder=""
+        placeholder="Copy and paste your Registery value here..."
         :autosize="{
           minRows: 10,
           maxRows: 10,
